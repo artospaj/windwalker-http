@@ -46,23 +46,6 @@ abstract class AbstractRequest extends AbstractMessage implements RequestInterfa
 	protected $requestTarget;
 
 	/**
-	 * Property allowMethods.
-	 *
-	 * @var  array
-	 */
-	protected $allowMethods = array(
-		'CONNECT',
-		'DELETE',
-		'GET',
-		'HEAD',
-		'OPTIONS',
-		'PATCH',
-		'POST',
-		'PUT',
-		'TRACE',
-	);
-
-	/**
 	 * Class init.
 	 *
 	 * @param  string|UriInterface     $uri      The uri target of this request.
@@ -314,11 +297,11 @@ abstract class AbstractRequest extends AbstractMessage implements RequestInterfa
 
 		$method = strtoupper($method);
 
-		if (!in_array($method, $this->allowMethods))
-		{
-			throw new \InvalidArgumentException('Invalid HTTP method: ' . $method);
-		}
+        if (!preg_match('/^[!#$%&\'*+.^_`\|~0-9a-z-]+$/i', $method))
+        {
+            throw new \InvalidArgumentException('Invalid HTTP method: ' . $method);
+        }
 
-		return $method;
+        return $method;
 	}
 }
