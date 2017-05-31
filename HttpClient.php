@@ -8,12 +8,7 @@
 
 namespace Windwalker\Http;
 
-if (!interface_exists('Http\Client\HttpClient'))
-{
-	include_once __DIR__ . '/HttpPlugClientInterface.php';
-}
 
-use Http\Client\HttpClient as HttpPlugClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Windwalker\Http\Request\Request;
@@ -28,7 +23,7 @@ use Windwalker\Uri\UriHelper;
  * 
  * @since  2.1
  */
-class HttpClient implements HttpClientInterface, HttpPlugClientInterface
+class HttpClient implements HttpClientInterface
 {
 	/**
 	 * Property options.
